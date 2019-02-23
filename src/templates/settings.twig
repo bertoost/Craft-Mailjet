@@ -1,0 +1,23 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.autosuggestField({
+    id: 'apiKey',
+    name: 'apiKey',
+    label: "API Key"|t('mailjet'),
+    instructions: "You can find this in your Mailjet settings for the chosen domain."|t('mailjet'),
+    required: true,
+    suggestEnvVars: true,
+    value: adapter.apiKey,
+    errors: adapter.getErrors('apiKey')
+}) }}
+
+{{ forms.autosuggestField({
+    id: 'apiSecret',
+    name: 'apiSecret',
+    label: "API Secret"|t('mailjet'),
+    instructions: "You can find this in your Mailjet settings for the chosen domain."|t('mailjet'),
+    required: true,
+    suggestEnvVars: true,
+    value: adapter.apiSecret,
+    errors: adapter.getErrors('apiSecret')
+}) }}
