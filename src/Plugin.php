@@ -2,31 +2,48 @@
 
 namespace bertoost\mailjet;
 
-use bertoost\mailjet\adapters\MailjetAdapter;
+use bertoost\mailjet\traits\PluginComponentsTrait;
+use bertoost\mailjet\traits\PluginEventsTrait;
+use Craft;
 use craft\base\Plugin as BasePlugin;
-use craft\events\RegisterComponentTypesEvent;
-use craft\helpers\MailerHelper;
-use yii\base\Event;
+use craft\i18n\PhpMessageSource;
 
 /**
  * Class Plugin
  */
 class Plugin extends BasePlugin
 {
+    use PluginComponentsTrait;
+    use PluginEventsTrait;
+
     /**
      * @inheritdoc
      */
     public function init()
     {
+        Craft::setAlias('@bertoost\mailjet', $this->getBasePath());
+
         parent::init();
 
-        // register adapter
-        Event::on(
-            MailerHelper::class,
-            MailerHelper::EVENT_REGISTER_MAILER_TRANSPORT_TYPES,
-            function(RegisterComponentTypesEvent $event) {
-                $event->types[] = MailjetAdapter::class;
-            }
-        );
+        $this->registerComponents();
+        $this->registerEvents();
+        $this->registerTranslations();
+    }
+
+    /**
+     * Registers translation definition
+     */
+    private function registerTranslations()
+    {
+        Craft::$app->i18n->translations['mailjet*'] = [
+            'class'          => PhpMessageSource::class,
+            'sourceLanguage' => 'en',
+            'basePath'       => $this->getBasePath() . '/translations',
+            'allowOverrides' => true,
+            'fileMap'        => [
+                'mailjet'     => 'site',
+                'mailjet-app' => 'app',
+            ],
+        ];
     }
 }
