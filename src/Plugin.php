@@ -2,6 +2,7 @@
 
 namespace bertoost\mailjet;
 
+use bertoost\mailjet\models\Settings;
 use bertoost\mailjet\traits\PluginComponentsTrait;
 use bertoost\mailjet\traits\PluginEventsTrait;
 use Craft;
@@ -17,7 +18,12 @@ class Plugin extends BasePlugin
     use PluginEventsTrait;
 
     /**
-     * @inheritdoc
+     * @var bool
+     */
+    public $hasCpSettings = true;
+
+    /**
+     * {@inheritdoc}
      */
     public function init()
     {
@@ -45,5 +51,32 @@ class Plugin extends BasePlugin
                 'mailjet-app' => 'app',
             ],
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function createSettingsModel()
+    {
+        return new Settings();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function settingsHtml()
+    {
+        $settings = $this->getSettings();
+        if (empty($settings->apiSmsName)) {
+
+            $systemName = Craft::$app->getSystemName();
+            $systemName = preg_replace('/[^a-zA-Z0-9]+/', '', $systemName);
+
+            $settings->apiSmsName = substr($systemName, 0, 11);
+        }
+
+        return \Craft::$app->getView()->renderTemplate('mailjet/sms/settings', [
+            'settings' => $settings,
+        ]);
     }
 }
