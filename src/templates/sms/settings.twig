@@ -1,0 +1,23 @@
+{% import "_includes/forms" as forms -%}
+
+{{ forms.textField({
+    name: 'apiSmsName',
+    label: 'SMS Name'|t('mailjet'),
+    instructions: 'A virtual name which appears in the SMS-inbox of the recipient.'|t('mailjet'),
+    warning: 'This name must be min. 3 and max. 11 characters and may only contain A-Z, a-z and 0-9. Even no space!!.'|t('mailjet'),
+    value: settings.apiSmsName,
+    errors: settings.getErrors('apiSmsName'),
+    required: true,
+    first: true
+}) }}
+
+{{ forms.autosuggestField({
+    id: 'apiSmsToken',
+    name: 'apiSmsToken',
+    label: "API SMS Token"|t('mailjet'),
+    instructions: "You can find this in your Mailjet SMS settings."|t('mailjet'),
+    suggestEnvVars: true,
+    required: true,
+    value: settings.apiSmsToken,
+    errors: settings.getErrors('apiSmsToken')
+}) }}

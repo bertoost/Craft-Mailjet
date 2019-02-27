@@ -1,0 +1,57 @@
+{% if messages %}
+    <div class="tableview">
+        <table class="data fullwidth collapsible">
+          <thead>
+            <tr>
+                <th colspan="2">Status</th>
+                <th>Details</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for message in messages %}
+
+                <tr>
+                    <td class="thin">
+                        <span class="status {{
+                            message.Status == 'opened' ? 'green' :
+                            message.Status == 'accepted' ? 'orange' :
+                            message.Status in ['failed', 'rejected'] ? 'red' :
+                            'light' }}"></span>
+                    </td>
+                    <td>
+                        <div>{{ message.Subject | title }}</div>
+                        <div class="light">
+                            <code>{{ message.ArrivedAt | date('Y/m/d H:i:s') }}</code>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            To: {{ message.ContactAlt | default('Undefined') }}
+                        </div>
+                        <div class="light">
+                            <code>from {{ message.Sender.Email | default('Undefined') }}</code>
+                        </div>
+                    </td>
+                </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
+
+        {% if totals.pages > 1 %}
+            <nav aria-label="Pagination">
+                <ul class="pagination">
+                    {% for pageNum in 1..totals.pages %}
+                        <li class="page-item{% if currentPage == pageNum %} active{% endif %}">
+                            <a href="{{ url('utilities/mailjet-messages-utility', { page: pageNum }) }}" class="page-link">
+                                {{ pageNum }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        {% endif %}
+
+    </div>
+{% endif %}

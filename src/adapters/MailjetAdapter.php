@@ -100,4 +100,16 @@ class MailjetAdapter extends BaseTransportAdapter
             ],
         ];
     }
+
+    /**
+     * Returns whether or not the system is using this adapter
+     *
+     * @return bool
+     */
+    public static function isUsed(): bool
+    {
+        $mailTransport = Craft::$app->getMailer()->getTransport();
+
+        return $mailTransport instanceof MailjetTransport;
+    }
 }
