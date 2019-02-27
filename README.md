@@ -32,26 +32,7 @@ composer require bertoost/craft-mailjet
 ./craft install/plugin mailjet
 ```
 
-## SMS
+## More...
 
-This plugin also supports the SMS features from Mailjet. Once you have completed the setup for SMS and added 
-some credits to your SMS account, you can get an API Token from your 
-[Mailjet account page](https://app.mailjet.com/sms) and configure it via the plugin settings section.
-
-Once completed, you can easily call the SMS service to send an text message.
-
-```php
-// don't forget to use the plugin
-use bertoost\mailjet\Plugin;
-
-// send away
-$sent = Plugin::getInstance()->getSms()->send('+310600000000', 'Your message');
-```
-
-## Setup
-
-Once Mailjet is installed, go to Settings → Email, and change the “Transport Type” setting to “Mailjet”. 
-Enter your Mailjet API Key and API secret (which you can get from 
-[app.mailjet.com/account/setup](https://app.mailjet.com/account/setup)), then click Save.
-
-> **Tip:** The API Key and API Secret settings can be set to an environment variables. See [Environmental Configuration](https://docs.craftcms.com/v3/config/environments.html) in the Craft docs to learn more about that.
+- [Using Mailjet Email](docs/Email.md)
+- [Using Mailjet SMS](docs/Sms.md)
