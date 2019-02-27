@@ -1,6 +1,6 @@
 # Craft CMS 3 - Mailjet mailer adapter
 
-## Unreleased
+## v1.1.0 - 2019-02-27
 
 ### Added
 
