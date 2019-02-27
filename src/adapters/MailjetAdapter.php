@@ -108,8 +108,8 @@ class MailjetAdapter extends BaseTransportAdapter
      */
     public static function isUsed(): bool
     {
-        $emailSettings = Craft::$app->getSystemSettings()->getSettings('email');
+        $mailTransport = Craft::$app->getMailer()->getTransport();
 
-        return !isset($emailSettings['transportType']) || $emailSettings['transportType'] === self::class;
+        return $mailTransport instanceof MailjetTransport;
     }
 }
