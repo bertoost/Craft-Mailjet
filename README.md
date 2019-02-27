@@ -14,7 +14,8 @@ You can install this plugin from the Plugin Store or with Composer.
 
 #### From the Plugin Store
 
-Go to the Plugin Store in your project’s Control Panel and search for “Mailjet”. Then click on the “Install” button in its modal window.
+Go to the Plugin Store in your project’s Control Panel and search for “Mailjet”. Then click on the “Install” 
+button in its modal window.
 
 #### With Composer
 
@@ -31,8 +32,7 @@ composer require bertoost/craft-mailjet
 ./craft install/plugin mailjet
 ```
 
-## Setup
+## More...
 
-Once Mailjet is installed, go to Settings → Email, and change the “Transport Type” setting to “Mailjet”. Enter your Mailjet API Key and API secret (which you can get from [app.mailjet.com/account/setup](https://app.mailjet.com/account/setup)), then click Save.
-
-> **Tip:** The API Key and API Secret settings can be set to an environment variables. See [Environmental Configuration](https://docs.craftcms.com/v3/config/environments.html) in the Craft docs to learn more about that.
+- [Using Mailjet Email](docs/Email.md)
+- [Using Mailjet SMS](docs/Sms.md)

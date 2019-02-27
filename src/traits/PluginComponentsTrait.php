@@ -3,6 +3,7 @@
 namespace bertoost\mailjet\traits;
 
 use bertoost\mailjet\services\MessagesService;
+use bertoost\mailjet\services\SmsService;
 
 /**
  * Trait PluginComponentsTrait
@@ -13,15 +14,23 @@ trait PluginComponentsTrait
     {
         $this->setComponents([
             'messages' => MessagesService::class,
+            'sms'      => SmsService::class,
         ]);
     }
 
     /**
      * @return MessagesService
-     * @throws \yii\base\InvalidConfigException
      */
     public function getMessages(): MessagesService
     {
         return $this->get('messages');
+    }
+
+    /**
+     * @return SmsService
+     */
+    public function getSms(): SmsService
+    {
+        return $this->get('sms');
     }
 }

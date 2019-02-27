@@ -27,6 +27,7 @@
   "extra": {
     "name": "Mailjet",
     "handle": "mailjet",
+    "hasCpSettings": true,
     "developer": "Bert Oost",
     "developerUrl": "https://bertoost.com",
     "documentationUrl": "https://github.com/bertoost/Craft-3-Mailjet/blob/master/README.md"

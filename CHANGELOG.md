@@ -4,8 +4,14 @@
 
 ### Added
 
+- SMS features by Mailjet API
 - System utility to view sent messages
-- Added caching for better performance in utility
+- Caching for better performance in utility
+
+### Changed
+
+- Fixed checking if Mailjet transport is used in `MailjetAdapter::isUsed()`
+- Separated docs into multiple markdown files
 
 ## v1.0.0 - 2019-02-23
 
