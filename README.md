@@ -4,6 +4,20 @@
 
 This plugin provides a [Mailjet](https://www.mailjet.com/) integration for [Craft CMS](https://craftcms.com/).
 
+## Temporary note!
+
+Craft already has a version of Swiftmailer to send emails. All Craft's mail adapters should (and probably will) use the Swiftmailer transport system.
+
+ >Unfortunate the support of Mailjet's Swiftmailer transport integration is not yet merged for production ready codebase. Therefor you have to put the next lines in your `composer.json` file before requiring the plugin.
+
+```json
+{
+  // ...
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
+```
+
 ## Requirements
 
 This plugin requires Craft CMS 3.1.5 or later.
