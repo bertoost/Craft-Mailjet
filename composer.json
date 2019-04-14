@@ -2,7 +2,7 @@
   "name": "bertoost/craft-mailjet",
   "description": "Craft 3 CMS plugin for adding Mailjet mail adapter.",
   "type": "craft-plugin",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "keywords": [
     "craft",
     "craftcms",
@@ -31,5 +31,7 @@
     "developer": "Bert Oost",
     "developerUrl": "https://bertoost.com",
     "documentationUrl": "https://github.com/bertoost/Craft-3-Mailjet/blob/master/README.md"
-  }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
