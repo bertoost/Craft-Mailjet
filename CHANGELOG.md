@@ -1,5 +1,11 @@
 # Craft CMS 3 - Mailjet mailer adapter
 
+## v1.1.1 - 2019-04-14
+
+### Changed
+
+- Added minimum-stability to composer.json since the Mailjet Swiftmailer transport requires a dev branch for newest 6+ version.
+
 ## v1.1.0 - 2019-02-27
 
 ### Added
