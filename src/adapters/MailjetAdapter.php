@@ -85,8 +85,6 @@ class MailjetAdapter extends BaseTransportAdapter
      */
     public function defineTransport()
     {
-        $clientOptions = ['url' => 'api.mailjet.com', 'version' => 'v3.1', 'call' => true];
-
         return [
             'class' => MailjetTransport::class,
             'constructArgs' => [
@@ -95,8 +93,7 @@ class MailjetAdapter extends BaseTransportAdapter
                 ],
                 Craft::parseEnv($this->apiKey),
                 Craft::parseEnv($this->apiSecret),
-                true,
-                $clientOptions
+                true
             ],
         ];
     }
