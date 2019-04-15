@@ -1,5 +1,11 @@
 # Craft CMS 3 - Mailjet mailer adapter
 
+## v1.1.2 - 2019-04-15
+
+### Changed
+
+- Fixed connecting to the Mailjet API by removing client options from mail adapter
+
 ## v1.1.1 - 2019-04-14
 
 ### Changed
