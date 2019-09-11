@@ -1,5 +1,12 @@
 # Craft CMS 3 - Mailjet mailer adapter
 
+## v1.2.0 - 2019-09-11
+
+### Changed
+
+- Fixed composer dependency for Mailjet's Swiftmailer 6 support (no dev-dependency anymore)
+- Including Mailjet Swiftmailer package version 2.0
+
 ## v1.1.2 - 2019-04-15
 
 ### Changed
