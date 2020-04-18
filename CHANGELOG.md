@@ -1,5 +1,12 @@
 # Craft CMS 3 - Mailjet mailer adapter
 
+## v1.2.1 - 2020-04-17
+
+### Changed
+
+- Fixed system utility interface
+- Fixed rendering environment variables for the API Key & Secret for the CP elements
+
 ## v1.2.0 - 2019-09-11
 
 ### Changed

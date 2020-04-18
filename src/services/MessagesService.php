@@ -19,14 +19,14 @@ class MessagesService extends AbstractService
     /**
      * {@inheritdoc}
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
 
-        $emailSettings = Craft::$app->getSystemSettings()->getSettings('email');
+        $emailSettings = Craft::$app->getProjectConfig()->get('email');
         $this->client = new Client(
-            $emailSettings['transportSettings']['apiKey'],
-            $emailSettings['transportSettings']['apiSecret']
+            Craft::parseEnv($emailSettings['transportSettings']['apiKey']),
+            Craft::parseEnv($emailSettings['transportSettings']['apiSecret'])
         );
     }
 
@@ -95,7 +95,7 @@ class MessagesService extends AbstractService
             }
         }
 
-        return $messages;
+        return $messages !== false ? $messages : [];
     }
 
     /**
