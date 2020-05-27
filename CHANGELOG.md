@@ -5,6 +5,7 @@
 ### Changed
 
 - Fixed SmsService init() to have a compatible return type definition ([#4](https://github.com/bertoost/Craft-3-Mailjet/issues/4))
+- Fixed SmsService to support environment variables for settings ([#2](https://github.com/bertoost/Craft-3-Mailjet/pull/2))
 
 ## v1.2.1 - 2020-04-17
 
