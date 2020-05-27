@@ -26,7 +26,7 @@ class SmsService extends AbstractService
     /**
      * {@inheritdoc}
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
 
@@ -47,7 +47,7 @@ class SmsService extends AbstractService
     {
         $result = $this->client->post(Resources::$SmsSend, [
             'body' => [
-                'From' => $this->settings->apiSmsName,
+                'From' => Craft::parseEnv($this->settings->apiSmsName),
                 'To'   => $to,
                 'Text' => $message,
             ],
