@@ -2,6 +2,7 @@
 
 namespace bertoost\mailjet\services;
 
+use Craft;
 use bertoost\mailjet\models\Settings;
 use bertoost\mailjet\Plugin;
 use Mailjet\Client;
@@ -31,7 +32,7 @@ class SmsService extends AbstractService
 
         $this->settings = Plugin::getInstance()->getSettings();
 
-        $this->client = new Client($this->settings->apiSmsToken);
+        $this->client = new Client(Craft::parseEnv($this->settings->apiSmsToken));
     }
 
     /**
