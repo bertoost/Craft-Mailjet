@@ -1,5 +1,11 @@
 # Craft CMS 3 - Mailjet mailer adapter
 
+## Unreleased
+
+### Changed
+
+- Fixed SmsService init() to have a compatible return type definition ([#4](https://github.com/bertoost/Craft-3-Mailjet/issues/4))
+
 ## v1.2.1 - 2020-04-17
 
 ### Changed
