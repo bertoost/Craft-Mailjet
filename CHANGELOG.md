@@ -1,5 +1,11 @@
 # Craft CMS 3 - Mailjet mailer adapter
 
+## v1.2.3 - 2021-01-27
+
+### Changed
+
+- Added PHP8 support
+
 ## v1.2.2 - 2020-05-27
 
 ### Changed
