@@ -1,9 +1,10 @@
 # Craft CMS 3 - Mailjet mailer adapter
 
-## v1.2.3 - 2021-01-27
+## v1.2.3 - 2021-04-17
 
 ### Changed
 
+- Improved utility view of sent status bullet (green)
 - Updated Mailject icon
 - Added PHP8 support
 

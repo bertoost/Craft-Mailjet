@@ -15,10 +15,14 @@
                     <tr>
                         <td class="thin">
                             <span class="status {{
-                            message.Status == 'opened' ? 'green' :
-                            message.Status == 'accepted' ? 'orange' :
-                            message.Status in ['failed', 'rejected'] ? 'red' :
-                            'light' }}"></span>
+                                message.Status in ['opened', 'sent'] ? 'green' :
+                                message.Status == 'accepted' ? 'orange' :
+                                message.Status in ['failed', 'rejected'] ? 'red' : 'light'
+                            }}" title="{{
+                                message.Status in ['opened', 'sent'] ? 'Sent / Opened' :
+                                message.Status == 'accepted' ? 'Accepted' :
+                                message.Status in ['failed', 'rejected'] ? 'Failed / Rejected' : ''
+                            }}"></span>
                         </td>
                         <td>
                             <div>{{ message.Subject | title }}</div>
