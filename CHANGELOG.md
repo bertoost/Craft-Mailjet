@@ -4,6 +4,7 @@
 
 ### Changed
 
+- Updated Mailject icon
 - Added PHP8 support
 
 ## v1.2.2 - 2020-05-27
