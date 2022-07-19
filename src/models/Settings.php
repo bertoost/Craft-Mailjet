@@ -4,25 +4,13 @@ namespace bertoost\mailjet\models;
 
 use craft\base\Model;
 
-/**
- * Class Settings
- */
 class Settings extends Model
 {
-    /**
-     * @var string
-     */
-    public $apiSmsName;
+    public string $apiSmsName = '';
 
-    /**
-     * @var string
-     */
-    public $apiSmsToken;
+    public string $apiSmsToken = '';
 
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['apiSmsName', 'apiSmsToken'], 'required'],

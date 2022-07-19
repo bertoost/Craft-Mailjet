@@ -3,38 +3,25 @@
 namespace bertoost\mailjet\services;
 
 use Craft;
+use craft\helpers\App;
 use Mailjet\Client;
 use Mailjet\Resources;
 
-/**
- * Class MessagesService
- */
 class MessagesService extends AbstractService
 {
-    /**
-     * @var Client
-     */
-    private $client;
+    private ?Client $client;
 
-    /**
-     * {@inheritdoc}
-     */
     public function init(): void
     {
         parent::init();
 
         $emailSettings = Craft::$app->getProjectConfig()->get('email');
         $this->client = new Client(
-            Craft::parseEnv($emailSettings['transportSettings']['apiKey']),
-            Craft::parseEnv($emailSettings['transportSettings']['apiSecret'])
+            App::parseEnv($emailSettings['transportSettings']['apiKey']),
+            App::parseEnv($emailSettings['transportSettings']['apiSecret'])
         );
     }
 
-    /**
-     * Returns the total number of messages
-     *
-     * @return int
-     */
     public function getTotalMessages(): int
     {
         $cacheKey = 'mailjet.messages_total';
@@ -56,14 +43,6 @@ class MessagesService extends AbstractService
         return $total;
     }
 
-    /**
-     * Get all messages send by the API
-     *
-     * @param int $limit
-     * @param int $offset
-     *
-     * @return array|null
-     */
     public function getMessagesList(int $limit = 200, int $offset = 0): ?array
     {
         $cacheKey = implode('-', ['mailjet', 'messages', $limit, $offset]);
@@ -98,13 +77,6 @@ class MessagesService extends AbstractService
         return $messages !== false ? $messages : [];
     }
 
-    /**
-     * Gets a sender based on given id
-     *
-     * @param int $id
-     *
-     * @return array|null
-     */
     public function getSenderById(int $id): ?array
     {
         $cacheKey = implode('-', ['mailjet', 'senders', $id]);
