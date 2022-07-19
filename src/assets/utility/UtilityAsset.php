@@ -5,15 +5,9 @@ namespace bertoost\mailjet\assets\utility;
 use craft\web\AssetBundle;
 use craft\web\assets\cp\CpAsset;
 
-/**
- * Class UtilityAsset
- */
 class UtilityAsset extends AssetBundle
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function init()
+    public function init(): void
     {
         $this->sourcePath = __DIR__;
         $this->depends = [

@@ -9,23 +9,14 @@ use Craft;
 use craft\base\Plugin as BasePlugin;
 use craft\i18n\PhpMessageSource;
 
-/**
- * Class Plugin
- */
 class Plugin extends BasePlugin
 {
-    use PluginComponentsTrait;
-    use PluginEventsTrait;
+    use PluginComponentsTrait,
+        PluginEventsTrait;
 
-    /**
-     * @var bool
-     */
-    public $hasCpSettings = true;
+    public bool $hasCpSettings = true;
 
-    /**
-     * {@inheritdoc}
-     */
-    public function init()
+    public function init(): void
     {
         Craft::setAlias('@bertoost\mailjet', $this->getBasePath());
 
@@ -53,18 +44,12 @@ class Plugin extends BasePlugin
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function createSettingsModel()
+    protected function createSettingsModel(): ?Settings
     {
         return new Settings();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function settingsHtml()
+    protected function settingsHtml(): ?string
     {
         $settings = $this->getSettings();
         if (empty($settings->apiSmsName)) {

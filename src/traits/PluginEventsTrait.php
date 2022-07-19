@@ -16,21 +16,15 @@ use craft\utilities\ClearCaches;
 use yii\base\Event;
 use yii\mail\MailEvent;
 
-/**
- * Trait PluginEventsTrait
- */
 trait PluginEventsTrait
 {
-    /**
-     * Register event listeners
-     */
     public function registerEvents(): void
     {
         // register adapter
         Event::on(
             MailerHelper::class,
             MailerHelper::EVENT_REGISTER_MAILER_TRANSPORT_TYPES,
-            function (RegisterComponentTypesEvent $event) {
+            static function (RegisterComponentTypesEvent $event) {
                 $event->types[] = MailjetAdapter::class;
             }
         );
@@ -42,7 +36,7 @@ trait PluginEventsTrait
             Event::on(
                 Utilities::class,
                 Utilities::EVENT_REGISTER_UTILITY_TYPES,
-                function (RegisterComponentTypesEvent $event) {
+                static function (RegisterComponentTypesEvent $event) {
                     $event->types[] = MailjetEventsUtility::class;
                 }
             );
@@ -51,7 +45,7 @@ trait PluginEventsTrait
             Event::on(
                 Mailer::class,
                 Mailer::EVENT_AFTER_SEND,
-                function (MailEvent $event) {
+                static function (MailEvent $event) {
                     Craft::$app->getQueue()->push(new ClearCachesJob());
                 }
             );
@@ -60,7 +54,7 @@ trait PluginEventsTrait
             Event::on(
                 ClearCaches::class,
                 ClearCaches::EVENT_REGISTER_CACHE_OPTIONS,
-                function (RegisterCacheOptionsEvent $event) {
+                static function (RegisterCacheOptionsEvent $event) {
                     $event->options[] = [
                         'key'    => 'mailjet-caches',
                         'label'  => Craft::t('mailjet', 'Mailjet caches'),

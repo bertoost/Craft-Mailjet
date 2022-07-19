@@ -2,9 +2,9 @@
 
 namespace bertoost\mailjet\services;
 
-use Craft;
 use bertoost\mailjet\models\Settings;
 use bertoost\mailjet\Plugin;
+use craft\helpers\App;
 use Mailjet\Client;
 use Mailjet\Resources;
 
@@ -13,41 +13,24 @@ use Mailjet\Resources;
  */
 class SmsService extends AbstractService
 {
-    /**
-     * @var Settings
-     */
-    public $settings;
+    public Settings $settings;
 
-    /**
-     * @var Client
-     */
-    private $client;
+    private Client $client;
 
-    /**
-     * {@inheritdoc}
-     */
     public function init(): void
     {
         parent::init();
 
         $this->settings = Plugin::getInstance()->getSettings();
 
-        $this->client = new Client(Craft::parseEnv($this->settings->apiSmsToken));
+        $this->client = new Client(App::parseEnv($this->settings->apiSmsToken));
     }
 
-    /**
-     * Sends an SMS message
-     *
-     * @param string $to
-     * @param string $message
-     *
-     * @return bool
-     */
     public function send(string $to, string $message): bool
     {
         $result = $this->client->post(Resources::$SmsSend, [
             'body' => [
-                'From' => Craft::parseEnv($this->settings->apiSmsName),
+                'From' => App::parseEnv($this->settings->apiSmsName),
                 'To'   => $to,
                 'Text' => $message,
             ],

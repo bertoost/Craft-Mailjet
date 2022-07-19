@@ -1,6 +1,6 @@
 <p align="center"><img src="./docs/mailjet.svg" width="300" alt="Mailjet for Craft CMS icon"></p>
 
-<h1 align="center">Mailjet for Craft CMS 3</h1>
+<h1 align="center">Mailjet for Craft CMS</h1>
 
 This plugin provides a [Mailjet](https://www.mailjet.com/) integration for [Craft CMS](https://craftcms.com/).
 

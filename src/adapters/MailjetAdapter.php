@@ -4,37 +4,23 @@ namespace bertoost\mailjet\adapters;
 
 use Craft;
 use craft\behaviors\EnvAttributeParserBehavior;
+use craft\helpers\App;
 use craft\mail\transportadapters\BaseTransportAdapter;
-use Mailjet\MailjetSwiftMailer\SwiftMailer\MailjetTransport;
-use Swift_Events_SimpleEventDispatcher;
+use Symfony\Component\Mailer\Bridge\Mailjet\Transport\MailjetApiTransport;
+use Symfony\Component\Mailer\Transport\AbstractTransport;
 
-/**
- * Class MailjetAdapter
- */
 class MailjetAdapter extends BaseTransportAdapter
 {
-    /**
-     * @var string
-     */
-    public $apiKey;
+    public string $apiKey = '';
 
-    /**
-     * @var string
-     */
-    public $apiSecret;
+    public string $apiSecret = '';
 
-    /**
-     * {@inheritdoc}
-     */
     public static function displayName(): string
     {
         return 'Mailjet';
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
+    public function behaviors(): array
     {
         $behaviors = parent::behaviors();
         $behaviors['parser'] = [
@@ -48,10 +34,7 @@ class MailjetAdapter extends BaseTransportAdapter
         return $behaviors;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'apiKey'    => Craft::t('mailjet', 'API Key'),
@@ -59,20 +42,14 @@ class MailjetAdapter extends BaseTransportAdapter
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['apiKey', 'apiSecret'], 'required'],
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getSettingsHtml()
+    public function getSettingsHtml(): ?string
     {
         return Craft::$app->getView()->renderTemplate('mailjet/settings', [
             'adapter' => $this,
@@ -80,33 +57,21 @@ class MailjetAdapter extends BaseTransportAdapter
     }
 
 
-    /**
-     * {@inheritdoc}
-     */
-    public function defineTransport()
+    public function defineTransport(): array|AbstractTransport
     {
-        return [
-            'class' => MailjetTransport::class,
-            'constructArgs' => [
-                [
-                    'class' => Swift_Events_SimpleEventDispatcher::class
-                ],
-                Craft::parseEnv($this->apiKey),
-                Craft::parseEnv($this->apiSecret),
-                true
-            ],
-        ];
+        return new MailjetApiTransport(
+            App::parseEnv($this->apiKey),
+            App::parseEnv($this->apiSecret)
+        );
     }
 
     /**
      * Returns whether or not the system is using this adapter
-     *
-     * @return bool
      */
     public static function isUsed(): bool
     {
         $mailTransport = Craft::$app->getMailer()->getTransport();
 
-        return $mailTransport instanceof MailjetTransport;
+        return $mailTransport instanceof MailjetApiTransport;
     }
 }
