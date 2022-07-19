@@ -1,4 +1,11 @@
-# Craft CMS 3 - Mailjet mailer adapter
+# Craft CMS - Mailjet mailer adapter
+
+## v2.0.0 - 2022-07-19
+
+### Changed
+
+- Updated Mail transport using Symfony's Mailer ([#8](https://github.com/bertoost/Craft-3-Mailjet/pull/8))
+- Updated plugin codebase for Craft 4
 
 ## v1.2.3 - 2021-04-17
 
