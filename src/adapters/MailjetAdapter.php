@@ -6,8 +6,8 @@ use Craft;
 use craft\behaviors\EnvAttributeParserBehavior;
 use craft\helpers\App;
 use craft\mail\transportadapters\BaseTransportAdapter;
-use Mailjet\MailjetSwiftMailer\SwiftMailer\MailjetTransport;
-use Swift_Events_SimpleEventDispatcher;
+use Symfony\Component\Mailer\Bridge\Mailjet\Transport\MailjetApiTransport;
+use Symfony\Component\Mailer\Transport\AbstractTransport;
 
 class MailjetAdapter extends BaseTransportAdapter
 {
@@ -59,17 +59,10 @@ class MailjetAdapter extends BaseTransportAdapter
 
     public function defineTransport(): array|AbstractTransport
     {
-        return [
-            'class' => MailjetTransport::class,
-            'constructArgs' => [
-                [
-                    'class' => Swift_Events_SimpleEventDispatcher::class
-                ],
-                Craft::parseEnv($this->apiKey),
-                Craft::parseEnv($this->apiSecret),
-                true
-            ],
-        ];
+        return new MailjetApiTransport(
+            App::parseEnv($this->apiKey),
+            App::parseEnv($this->apiSecret)
+        );
     }
 
     /**
@@ -79,6 +72,6 @@ class MailjetAdapter extends BaseTransportAdapter
     {
         $mailTransport = Craft::$app->getMailer()->getTransport();
 
-        return $mailTransport instanceof MailjetTransport;
+        return $mailTransport instanceof MailjetApiTransport;
     }
 }
