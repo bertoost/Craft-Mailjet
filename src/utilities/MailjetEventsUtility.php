@@ -7,9 +7,6 @@ use bertoost\mailjet\Plugin;
 use Craft;
 use craft\base\Utility;
 
-/**
- * Class MailjetEventsUtility
- */
 class MailjetEventsUtility extends Utility
 {
     /**
@@ -38,6 +35,7 @@ class MailjetEventsUtility extends Utility
 
     /**
      * {@inheritdoc}
+     *
      * @throws \Exception
      */
     public static function contentHtml(): string
@@ -48,19 +46,21 @@ class MailjetEventsUtility extends Utility
 
         $limit = 14;
         $offset = ($page - 1) * $limit;
-        $totalPages = (int) ceil($totalMessages / $limit);
+        $totalPages = (int)ceil($totalMessages / $limit);
 
         // view
         $view = Craft::$app->getView();
         $view->registerAssetBundle(UtilityAsset::class);
 
-        return $view->renderTemplate('mailjet/utility', [
-            'messages' => $service->getMessagesList($limit, $offset),
-            'totals'   => [
-                'messages' => $totalMessages,
-                'pages'    => $totalPages,
-            ],
-            'currentPage' => $page,
-        ]);
+        return $view->renderTemplate(
+            'mailjet/utility', [
+                'messages' => $service->getMessagesList($limit, $offset),
+                'totals' => [
+                    'messages' => $totalMessages,
+                    'pages'    => $totalPages,
+                ],
+                'currentPage' => $page,
+            ]
+        );
     }
 }
