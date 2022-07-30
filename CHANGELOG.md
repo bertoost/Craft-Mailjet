@@ -1,5 +1,12 @@
 # Craft CMS - Mailjet mailer adapter
 
+## v2.0.1 - 2022-07-30
+
+### Changed
+
+- Downgraded PHP version requirement to 8.0+
+- Formatted code to match Craft's standards
+
 ## v2.0.0 - 2022-07-19
 
 ### Changed
