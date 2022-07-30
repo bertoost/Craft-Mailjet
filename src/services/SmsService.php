@@ -8,9 +8,6 @@ use craft\helpers\App;
 use Mailjet\Client;
 use Mailjet\Resources;
 
-/**
- * Class SmsService
- */
 class SmsService extends AbstractService
 {
     public Settings $settings;
@@ -28,16 +25,17 @@ class SmsService extends AbstractService
 
     public function send(string $to, string $message): bool
     {
-        $result = $this->client->post(Resources::$SmsSend, [
-            'body' => [
-                'From' => App::parseEnv($this->settings->apiSmsName),
-                'To'   => $to,
-                'Text' => $message,
-            ],
-        ]);
+        $result = $this->client->post(
+            Resources::$SmsSend, [
+                'body' => [
+                    'From' => App::parseEnv($this->settings->apiSmsName),
+                    'To'   => $to,
+                    'Text' => $message,
+                ],
+            ]
+        );
 
         if ($result->success()) {
-
             return true;
         }
 

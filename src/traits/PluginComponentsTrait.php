@@ -9,10 +9,12 @@ trait PluginComponentsTrait
 {
     public function registerComponents(): void
     {
-        $this->setComponents([
-            'messages' => MessagesService::class,
-            'sms'      => SmsService::class,
-        ]);
+        $this->setComponents(
+            [
+                'messages' => MessagesService::class,
+                'sms'      => SmsService::class,
+            ]
+        );
     }
 
     public function getMessages(): MessagesService

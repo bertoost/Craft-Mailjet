@@ -26,15 +26,15 @@ class MessagesService extends AbstractService
     {
         $cacheKey = 'mailjet.messages_total';
         if (false === ($total = $this->cache->get($cacheKey))) {
-
-            $result = $this->client->get(Resources::$Message, [
-                'filters' => [
-                    'countOnly' => true,
-                ],
-            ]);
+            $result = $this->client->get(
+                Resources::$Message, [
+                    'filters' => [
+                        'countOnly' => true,
+                    ],
+                ]
+            );
 
             if ($result->success()) {
-
                 $total = $result->getTotal();
                 $this->cacheIt($cacheKey, $total);
             }
@@ -47,25 +47,24 @@ class MessagesService extends AbstractService
     {
         $cacheKey = implode('-', ['mailjet', 'messages', $limit, $offset]);
         if (false === ($messages = $this->cache->get($cacheKey))) {
-
             // get messages
-            $result = $this->client->get(Resources::$Message, [
-                'filters' => [
-                    'ShowSubject'    => true,
-                    'ShowContactAlt' => true,
-                    'Limit'          => $limit,
-                    'Offset'         => $offset,
-                    'S0rt'           => 'CreatedAt DESC',
-                ],
-            ]);
+            $result = $this->client->get(
+                Resources::$Message, [
+                    'filters' => [
+                        'ShowSubject' => true,
+                        'ShowContactAlt' => true,
+                        'Limit' => $limit,
+                        'Offset' => $offset,
+                        'S0rt' => 'CreatedAt DESC',
+                    ],
+                ]
+            );
 
             if ($result->success()) {
-
                 // make them an array
                 $messages = $result->getData();
 
                 foreach ($messages as $i => $message) {
-
                     // include the sender details
                     $messages[$i]['Sender'] = $this->getSenderById($message['SenderID']);
                 }
@@ -81,7 +80,6 @@ class MessagesService extends AbstractService
     {
         $cacheKey = implode('-', ['mailjet', 'senders', $id]);
         if (false === ($sender = $this->cache->get($cacheKey))) {
-
             // get sender by id
             $sender = $this->client->get(Resources::$Sender, ['id' => $id])->getData()[0];
             $this->cacheIt($cacheKey, $sender);

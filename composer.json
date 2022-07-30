@@ -2,7 +2,6 @@
   "name": "bertoost/craft-mailjet",
   "description": "Craft CMS plugin for adding Mailjet mail adapter.",
   "type": "craft-plugin",
-  "version": "2.0.0",
   "keywords": [
     "craft",
     "craftcms",
@@ -15,7 +14,7 @@
   "homepage": "https://github.com/bertoost/Craft-3-Mailjet",
   "license": "MIT",
   "require": {
-    "php": "^8.1",
+    "php": "^8.0",
     "craftcms/cms": "^4.1",
     "mailjet/mailjet-apiv3-php": "^1.5.6",
     "symfony/mailjet-mailer": "^v6.1"

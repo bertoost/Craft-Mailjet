@@ -35,7 +35,7 @@ class Plugin extends BasePlugin
         Craft::$app->i18n->translations['mailjet*'] = [
             'class'          => PhpMessageSource::class,
             'sourceLanguage' => 'en',
-            'basePath'       => $this->getBasePath() . '/translations',
+            'basePath'       => $this->getBasePath().'/translations',
             'allowOverrides' => true,
             'fileMap'        => [
                 'mailjet'     => 'site',
@@ -53,15 +53,16 @@ class Plugin extends BasePlugin
     {
         $settings = $this->getSettings();
         if (empty($settings->apiSmsName)) {
-
             $systemName = Craft::$app->getSystemName();
             $systemName = preg_replace('/[^a-zA-Z0-9]+/', '', $systemName);
 
             $settings->apiSmsName = substr($systemName, 0, 11);
         }
 
-        return \Craft::$app->getView()->renderTemplate('mailjet/sms/settings', [
-            'settings' => $settings,
-        ]);
+        return \Craft::$app->getView()->renderTemplate(
+            'mailjet/sms/settings', [
+                'settings' => $settings,
+            ]
+        );
     }
 }
