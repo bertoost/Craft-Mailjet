@@ -55,7 +55,7 @@ class MessagesService extends AbstractService
                         'ShowContactAlt' => true,
                         'Limit' => $limit,
                         'Offset' => $offset,
-                        'S0rt' => 'CreatedAt DESC',
+                        'Sort' => 'CreatedAt DESC',
                     ],
                 ]
             );
