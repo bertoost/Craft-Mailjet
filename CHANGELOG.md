@@ -1,5 +1,11 @@
 # Craft CMS 3 - Mailjet mailer adapter
 
+## v1.2.4 - 2024-03-24
+
+### Changed
+
+- Fixed typo to the sort property ([#10](https://github.com/bertoost/Craft-Mailjet/pull/10/))
+
 ## v1.2.3 - 2021-04-17
 
 ### Changed
