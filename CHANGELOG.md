@@ -1,5 +1,12 @@
 # Craft CMS - Mailjet mailer adapter
 
+## v2.0.2 - 2024-03-24
+
+### Changed
+
+- Fixed typo to the sort property ([#10](https://github.com/bertoost/Craft-Mailjet/pull/10/))
+- Scaled down the symfony/mailjet-mailer requirement ([#9](https://github.com/bertoost/Craft-Mailjet/pull/9))
+
 ## v2.0.1 - 2022-07-30
 
 ### Changed
