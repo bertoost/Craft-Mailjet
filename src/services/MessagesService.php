@@ -70,15 +70,17 @@ class MessagesService extends AbstractService
         if (false === ($messages = $this->cache->get($cacheKey))) {
 
             // get messages
-            $result = $this->client->get(Resources::$Message, [
-                'filters' => [
-                    'ShowSubject'    => true,
-                    'ShowContactAlt' => true,
-                    'Limit'          => $limit,
-                    'Offset'         => $offset,
-                    'S0rt'           => 'CreatedAt DESC',
-                ],
-            ]);
+            $result = $this->client->get(
+                Resources::$Message, [
+                    'filters' => [
+                        'ShowSubject' => true,
+                        'ShowContactAlt' => true,
+                        'Limit' => $limit,
+                        'Offset' => $offset,
+                        'Sort' => 'CreatedAt DESC',
+                    ],
+                ]
+            );
 
             if ($result->success()) {
 
