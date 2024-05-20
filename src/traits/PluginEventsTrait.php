@@ -23,7 +23,7 @@ trait PluginEventsTrait
         // register adapter
         Event::on(
             MailerHelper::class,
-            MailerHelper::EVENT_REGISTER_MAILER_TRANSPORT_TYPES,
+            MailerHelper::EVENT_REGISTER_MAILER_TRANSPORTS,
             static function (RegisterComponentTypesEvent $event) {
                 $event->types[] = MailjetAdapter::class;
             }
@@ -35,7 +35,7 @@ trait PluginEventsTrait
             // register utility
             Event::on(
                 Utilities::class,
-                Utilities::EVENT_REGISTER_UTILITY_TYPES,
+                Utilities::EVENT_REGISTER_UTILITIES,
                 static function (RegisterComponentTypesEvent $event) {
                     $event->types[] = MailjetEventsUtility::class;
                 }
