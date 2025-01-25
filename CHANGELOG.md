@@ -1,5 +1,11 @@
 # Craft CMS - Mailjet mailer adapter
 
+## v2.1.1 - 2025-01-25
+
+### Changed
+
+- Updated to support previous versions of Craft as well
+
 ## v2.1.0 - 2024-05-20
 
 ### Changed
